@@ -383,7 +383,7 @@
     function assignment(data){
             $.ajax({
                 type: "POST",
-                url: "${buildingAPI}"+"/assigment",
+                url: "${buildingAPI}"+"/assignment",
                 data: JSON.stringify(data),
                 contentType: "application/json",
                 dataType:"JSON",
@@ -391,8 +391,6 @@
                     console.info("Success");
                 },
                 error: function(response){
-                    console.info("Giao không thành công")
-                    window.location.href="<c:url value="/admin/admin/building-list?message=erro"/>";
                     console.log(response);
                 }
               })

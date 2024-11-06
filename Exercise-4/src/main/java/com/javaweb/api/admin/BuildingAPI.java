@@ -3,6 +3,7 @@ package com.javaweb.api.admin;
 import com.javaweb.model.dto.AssignmentBuildingDTO;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.response.ResponseDTO;
+import com.javaweb.service.AssignmentBuildingService;
 import com.javaweb.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,8 @@ import java.util.List;
 public class BuildingAPI {
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private AssignmentBuildingService assignmentBuildingService;
     @PostMapping
     public void addOrUpdateBuilding(@RequestBody BuildingDTO buildingDTO) {
         buildingService.addAndUpdateBuilding(buildingDTO);
@@ -28,8 +31,9 @@ public class BuildingAPI {
         ResponseDTO result = buildingService.listStaffs(id);
         return result;
     }
-    @PostMapping("/assigment")
+    @PostMapping("/assignment")
     public void updateAssignment(@RequestBody AssignmentBuildingDTO assignmentBuildingDTO) {
-        System.out.println("ok");
+            assignmentBuildingService.assignmentBuilding(assignmentBuildingDTO.getBuildingId(), assignmentBuildingDTO.getStaffs());
+            System.out.println("ok");
     }
 }
